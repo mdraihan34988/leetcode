@@ -1,20 +1,13 @@
 class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
-        vector<int> value;
-         unordered_map<int, int> traverseElement;
-        for(int i = 0; i < nums.size(); i++)
-        {
-            int findElement = target - nums[i];
-
-            if(traverseElement.find(findElement) != traverseElement.end()) {
-                value.push_back(i);
-                value.push_back(traverseElement.find(findElement)->second);
-                return value;
+    public int removeDuplicates(int[] nums) {
+        int uniqIndex = 1;
+        for(int i=0;i<nums.length-1;i++) {
+            if(nums[i] < nums[i+1]) {
+                nums[uniqIndex] =  nums[i+1];
+                uniqIndex++;
             }
-            traverseElement[ nums[i]]=i;
         }
-        return value;
+
+        return uniqIndex;
     }
-};
+}
