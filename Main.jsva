@@ -1,13 +1,25 @@
 class Solution {
-    public int removeDuplicates(int[] nums) {
-        int uniqIndex = 1;
-        for(int i=0;i<nums.length-1;i++) {
-            if(nums[i] < nums[i+1]) {
-                nums[uniqIndex] =  nums[i+1];
-                uniqIndex++;
+    public int romanToInt(String s) {
+
+        int[] romanNumber = new int[128];
+        romanNumber['C'] = 100;
+        romanNumber['D'] = 500;
+        romanNumber['L'] = 50;
+        romanNumber['M'] = 1000;
+        romanNumber['I'] = 1;
+        romanNumber['V'] = 5;
+        romanNumber['X'] = 10;
+
+        int total = romanNumber[s.charAt(s.length()-1)];
+        
+        for( int i=0; i<s.length()-1 ; i++) {
+            if ( romanNumber[s.charAt(i)] >= romanNumber[s.charAt(i+1)]) {
+                total += romanNumber[s.charAt(i)];
+            } else {
+                total -= romanNumber[s.charAt(i)];
             }
         }
-
-        return uniqIndex;
+        
+        return total;
     }
 }
